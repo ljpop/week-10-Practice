@@ -1,0 +1,179 @@
+-->inside folder:
+npx create-react-app my-app
+cd my-app
+npm start
+-->STARTS @ localhost:3030
+--------------
+*React Developer Tools - chrome
+*VS CODE: ES7 React/Redux/GraphQL/React-Native snippets
+--------------
+Change JavaScript to JavaScript React
+--------------
+PUBLIC: html--> change title, bootstrap...
+------------------
+SRC: delete: app.css, logo.svg, setuptests.js...
+SRC: app.js: 
+*return can have only one parent element : <div className='container'>
+it can be empty: <> <el1></el1> </>
+*delete logo, app.css, everything inide div container
+--------------
+Variables:
+function App() {
+  const name = 'Lj';
+  return (
+    <div className="container">
+     <h1>Hello</h1>
+     <h2>Hello {name}</h2>
+    </div>
+  );
+}
+----------
+const x, name1, name2;
+{x ? name1 : name2}
+---------
+src -> new folder components:
+Header.js
+rafce-->
+//import React from 'react'
+//NOT NEEDED anymore
+//Change Header to UpperCase H
+const Header = () => {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+export default Header
+----------
+app.js:
+import Header from './components/Header'
+ <Header />
+------Other way with classes
+***props:
+app.js: 
+	<Header title='Hello from App'/>
+Header.js:
+const Header = (props) => {
+    return (
+        <header>
+            <h1>{props.title}</h1>
+        </header>
+    )
+}
+
+//OPTIONAL: default props
+Header.defaultProps = {
+    title:'Default Header'
+}
+-------UMESTO props -- objekat:
+const Header = ({title}) => {
+    return (
+        <header>
+            <h1>{title}</h1>
+        </header>
+    )
+}
+
+------PROP TYPES:
+impt --> import PropTypes from 'prop-types'
+Header.propTypes = {
+    title: PropTypes.string.isRequired
+}
+--> errors in console
+------------------
+-----------------
+30:42 - Styling
+
+src index.css
+
+use className!!!!!!!! instead of class
+-----------------
+new component: Button ...
+------------
+event LISTENERS:
+const Button = ()=>{
+    const onClick = () => {
+        console.log('click');
+    }
+    return (
+             <button onClick={onClick} </button>
+    )
+}
+---------better in header
+---create Tasks:
+	const tasks = [
+    {id:1, 
+    text: "Doctor",
+    day: 'Feb 5th at 2:30 pm',
+    reminder: true 
+},
+{id:2, 
+    text: "School",
+    day: 'Feb 6th at 4:30 pm',
+    reminder: true 
+},
+{id:3, 
+    text: "Food",
+    day: 'Feb 7th at 2:30 am',
+    reminder: false 
+}
+]
+const Tasks = () => {
+    return (
+        <>{tasks.map((task)=>(<h3 key={task.id}>{task.text}</h3>))}
+            
+        </>
+    )
+}
+
+OBAVEZAN JE different key
+-----better way:
+    const [tasks, setTasks]=useState([
+        {id:1, 
+        text: "Doctor",
+        day: 'Feb 5th at 2:30 pm',
+        reminder: true 
+    },
+    {id:2, 
+        text: "School",
+        day: 'Feb 6th at 4:30 pm',
+        reminder: true 
+    },
+    {id:3, 
+        text: "Food",
+        day: 'Feb 7th at 2:30 am',
+        reminder: false 
+    }
+    ])
+****before return
+ne moze da se radi u returnu: tasks.push()
+nego stateTasks([...tasks, {}])
+--------------THE REAL WAY:
+not inside component so we can use it outside..
+-------> INSIDE app.js
++<Tasks tasks={tasks}/>
+
+----------
+font awesome
+react icon!!
+cd my-app !!!!!!!!!!!!!!!!!!!!!!
+npm i react-icons
+Tamo gde koristimo:
+import { FaTimes } from 'react-icons/fa'
+-----------
+51:41 - Delete task & prop drilling
+55:50 - Optional message if no tasks
+56:58 - Toggle reminder & conditional styling
+1:03:13 - Add Task Form
+1:06:16 - Form input state (controlled components)
+1:09:18 - Add task submit
+1:14:36 - showAddTask state
+1:15:58 - Button toggle
+------------
+Build for production:
+npm run build
+json server..
+
+
+
