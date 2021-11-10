@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AddTask from './components/AddTask'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import Dugmence from './components/Dugmence'
+import Drugapisi from './components/Drugapisi'
 
 function App()  {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -40,12 +42,40 @@ const toggleReminder=(id)=>{
   setTasks(tasks.map((task)=>task.id===id?{...task, reminder:!task.reminder}:task))
   // if (tasks[id-1].reminder) console.log('REMINDER ON')
 }
+
+
+
+//testiranje
+const [varijabla, podesiVar] = useState('neki text')
+const [varijabla2] = useState('novi text')
+
+const ideGas = ()=>{
+  console.log(varijabla, '|| not changed')
+  podesiVar(varijabla2)
+  // console.log(varijabla)
+
+}
+
+useEffect(()=> console.log(varijabla, '|| changed'),[varijabla])
+
+
+
+
   return (
     <div className="container">
       <Header onAdd={()=>setShowAddTask(!showAddTask)} showAddTask={showAddTask} showAdd={showAddTask}/>     
       {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length>0 ?<Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>: 'No tasks'}
+
+
+
+      <Dugmence uradiNesto={ideGas} />
+
       
+      <Drugapisi nekiText={varijabla}  />
+
+
+
     </div>
   );
 }
